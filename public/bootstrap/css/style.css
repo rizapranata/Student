@@ -1,0 +1,81 @@
+
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    margin-bottom: 70px;
+}
+h2{
+    border-bottom: 1px solid #000;
+}
+
+.box-button{
+    display: inline-block;
+}
+
+.table-nav, .tombol-nav{
+    
+    clear: both;
+    float: left;
+    widows: 100%;
+}
+
+.tombol-nav{
+    margin-top: 10px;
+}
+
+.jml-data, .paging{
+    width: 50%;
+    height: 50%;
+    display: block;
+}
+
+.jml-data{
+    float: left;
+    padding-top: 15px;
+}
+
+.paging{
+    float: right;
+    text-align: right;
+}
+
+.paging ul.pager, .paging ul.pagination{
+    text-align: right;
+}
+
+ul.pagination, ul.pager{
+    margin-top: 8px;
+}
+
+/* .garis-jml{
+    height: 40px;
+    padding: 10px 0;
+    border-top: 1px solid #c2bcbc;
+    border-bottom: 1px solid #c2bcbc;
+    background-color: rgb(235, 231, 227);
+} */
+
+
+.head{
+    background-color: rgb(31, 30, 30);
+    color:white;
+}
+
+.display{
+    display: inline-table;
+}
+
+.bottom-nav{
+    margin-top: 20px;
+}
+
+.box-button{
+    display: inline-block;
+}
+
+#siswa h2, #edit{
+    border-bottom: 2px solid #c2bcbc;
+} 
