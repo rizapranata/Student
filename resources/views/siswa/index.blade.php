@@ -58,9 +58,10 @@
                 <strong>Count Student : {{ $jml_siswa }}</strong>
             </div>
             <div class="paging">
-               {{ $siswa_list->links()}}
+               {{ $siswa_list->links() }}
             </div>
-        </div><br>
+        </div>
+
         <div class="tombol-nav">
             <div>
                 <a href="http://localhost/siswa/public/siswa/create" class="btn btn-primary">Add Student</a>

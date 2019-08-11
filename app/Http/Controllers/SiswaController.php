@@ -9,9 +9,10 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $siswa_list = Student::orderBy('nama_siswa', 'asc')->simplePaginate(10);
+        $halaman = 'siswa';
+        $siswa_list = Student::orderBy('nama_siswa', 'asc')->paginate(3);
         $jml_siswa = Student::count();
-        return view('siswa.index',compact('siswa_list','jml_siswa'));
+        return view('siswa.index',compact('siswa_list','jml_siswa','halaman'));
     }
 
     public function create()

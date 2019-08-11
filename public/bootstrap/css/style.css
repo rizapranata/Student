@@ -16,19 +16,24 @@ h2{
 }
 
 .table-nav, .tombol-nav{
-    
+    display: block;
     clear: both;
     float: left;
-    widows: 100%;
+    width: 100%;
 }
 
 .tombol-nav{
     margin-top: 10px;
 }
 
+.table-nav{
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
 .jml-data, .paging{
     width: 50%;
-    height: 50%;
+    height: 50px;
     display: block;
 }
 
@@ -49,15 +54,6 @@ h2{
 ul.pagination, ul.pager{
     margin-top: 8px;
 }
-
-/* .garis-jml{
-    height: 40px;
-    padding: 10px 0;
-    border-top: 1px solid #c2bcbc;
-    border-bottom: 1px solid #c2bcbc;
-    background-color: rgb(235, 231, 227);
-} */
-
 
 .head{
     background-color: rgb(31, 30, 30);
