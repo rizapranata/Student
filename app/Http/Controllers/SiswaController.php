@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Validator;
 use App\Models\Student;
+use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
     public function index()
     {
         $halaman = 'siswa';
-        $siswa_list = Student::orderBy('nama_siswa', 'asc')->paginate(3);
+        $siswa_list = Student::orderBy('nama_siswa', 'asc')->paginate(5);
         $jml_siswa = Student::count();
         return view('siswa.index',compact('siswa_list','jml_siswa','halaman'));
     }
@@ -23,10 +24,28 @@ class SiswaController extends Controller
 
     public function store(Request $request)
     {
+        /**
+         * proses validasi data
+         */
+        $input = $request->all();
+        $validator = Validator::make($input, [
+                'nisn' => 'required|string|size:5|unique:students,nisn',
+                'nama_siswa' => 'required|string|max:30',
+                'tgl_lahir' => 'required|date',
+                'jenis_kelamin' => 'required|in:L,P',
+        ]);
+
+        if($validator->fails()){
+            return redirect('siswa/create')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
         /*  
         * input data dengan cara Mass Assignment
+        * jika lolos dari validasi
         */
-       Student::create($request->all());
+       Student::create($input);
        return redirect('siswa');
 
         /*  
@@ -69,4 +88,6 @@ class SiswaController extends Controller
         $siswa->delete();
         return redirect('siswa');
     }
+
+    
 }

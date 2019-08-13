@@ -12,4 +12,16 @@ class Student extends Model
         'tgl_lahir',
         'jenis_kelamin'
     ];
+
+    //untuk mengubah case dari database menjadi kapital/Title Case/CamelCase
+    public function getNamaSiswaAtribute($nama_siswa)
+    {
+        return ucwords($nama_siswa);
+    }
+
+    //untuk mengubah case menjadi kapital/Title Case/CamelCase saat user inputkan nama dgn huruf kecil
+    public function setNamaSiswaAtribute($nama_siswa)
+    {
+        return strtolower($nama_siswa);
+    }
 }

@@ -11,6 +11,7 @@
     <h2>Add Student</h2>
 
     {!! Form::open(['url' => 'siswa']) !!}
+    @include('errors.form_error_list')
     @include('siswa.form',['submitButtonText' => 'Save'])
     {!! Form::close() !!}
 
