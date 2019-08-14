@@ -1,4 +1,9 @@
 
+<!-- mencegah error input nisn dari id itu sendiri -->
+@if (isset($siswa))
+    {!! Form::hidden('id', $siswa->id) !!}
+@endif
+
 @if ($errors->any())
 <div class="form-group {{ $errors->has('nisn') ? 'has-error' : 'has-success' }}">
 @else

@@ -78,6 +78,19 @@ class SiswaController extends Controller
     public function update($id, Request $request)
     {
         $siswa = Student::find($id);
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+                'nisn'          => 'required|string|size:5|unique:students,nisn,' . $request->input('id'),
+                'nama_siswa'    => 'required|string|max:30',
+                'tgl_lahir'     => 'required|date',
+                'jenis_kelamin' => 'required|in:L,P',
+        ]);
+        if ($validator->fails()){
+            return redirect('siswa/' . $id . '/edit')->withInput()
+            ->withErrors($validator);
+        }
+
         $siswa->update($request->all());
         return redirect('siswa');
     }
