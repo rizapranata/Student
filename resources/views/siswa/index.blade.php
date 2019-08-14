@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
     <div id="siswa">
-        <h2>Student</h2>
+        <h2>Students</h2>
 
         @if(!empty($siswa_list))
             <table class="table table-striped">

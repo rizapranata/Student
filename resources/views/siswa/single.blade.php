@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row col-md-6">
         <div id="siswa">
-            <h2>Detail Siswa</h2>
+            <h2>Detail Student</h2>
             <table class="table table-striped">
                 <tr>
                     <th>NISN</th>

@@ -7,7 +7,7 @@
 
 <div class="container">
   <div class="row">
-    <h2 id="edit">Edit Siswa</h2>
+    <h2 id="edit">Edit Student</h2>
   <div class="col-md-6">
    
     {!! Form::model($siswa, ['method' => 'PATCH', 'action' => ['SiswaController@update', $siswa->id]]) !!}
