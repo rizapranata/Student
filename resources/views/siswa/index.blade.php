@@ -18,6 +18,7 @@
                         <th>Name</th>
                         <th>Birth Date</th>
                         <th>Gender</th>
+                        <th>Telephone</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -28,6 +29,7 @@
                         <td>{{ $s->nama_siswa }}</td>
                         <td>{{ $s->tgl_lahir }}</td>
                         <td>{{ $s->jenis_kelamin }}</td>
+                        <td>{{ !empty($s->telepon()->no_telepon) ? $s->telepon()->no_telepon : '-' }}</td>
                         <td class="tombol">
                             <div class="box-button">
                                 <a href="http://localhost/siswa/public/siswa/{{ $s->id }}">

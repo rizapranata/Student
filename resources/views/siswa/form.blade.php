@@ -1,5 +1,7 @@
 
-<!-- mencegah error input nisn dari id itu sendiri -->
+<!-- mencegah error input nisn dari id itu sendiri yang sedang di update
+    input id hidden ini dibuat hanya jika proses edit/update
+-->
 @if (isset($siswa))
     {!! Form::hidden('id', $siswa->id) !!}
 @endif

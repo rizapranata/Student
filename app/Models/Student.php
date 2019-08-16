@@ -24,4 +24,8 @@ class Student extends Model
     {
         return strtolower($nama_siswa);
     }
+
+    public function telepon(){
+        return $this->hasOne('App\Models\Telepon','$id_siswa');
+    }
 }
