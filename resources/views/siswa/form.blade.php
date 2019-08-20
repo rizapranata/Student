@@ -59,6 +59,18 @@
     @endif
 </div>
 
+@if ($errors->any())
+<div class="form-group {{ $errors->has('no_telepon') ? 'has-error' : 'has-success' }}">
+@else
+<div class="form-group">
+@endif
+    {!! Form::label('no_telepon', 'Telepon', ['class' => 'control-lable']) !!}
+    {!! Form::text('no_telepon', null, ['class' => 'form-control']) !!}
+    @if ($errors->has('no_telepon'))
+        <span class="help-block">{{ $errors->first('no_telepon') }}</span>
+    @endif
+</div>
+
 <div class="form-group">
         {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary form-control']) !!}
 </div>

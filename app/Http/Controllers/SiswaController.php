@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Models\Student;
+use App\Models\Telepon;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -33,6 +34,7 @@ class SiswaController extends Controller
                 'nama_siswa'    => 'required|string|max:30',
                 'tgl_lahir'     => 'required|date',
                 'jenis_kelamin' => 'required|in:L,P',
+                'no_telepon'    => 'sometimes|numeric|digits_between:10,15|unique:telepon,no_telepon',
         ]);
 
         if($validator->fails()){
@@ -45,7 +47,11 @@ class SiswaController extends Controller
         * input data dengan cara Mass Assignment
         * jika lolos dari validasi
         */
-       Student::create($input);
+       $siswa = Student::create($input);
+       $telepon = new Telepon;
+       $telepon->no_telepon = $request->input('no_telepon');
+       $siswa->telepon()->save($telepon);
+
        return redirect('siswa');
 
         /*  
@@ -71,7 +77,10 @@ class SiswaController extends Controller
 
     public function edit($id)
     {
-        $siswa = Student::find($id);
+        $siswa = Student::findOrFail($id);
+        if(!empty($siswa->telepon->no_telepon)){
+            $siswa->no_telepon = $siswa->telepon->no_telepon;
+        }
         return view('siswa.edit', compact('siswa'));
     }
 
@@ -86,12 +95,36 @@ class SiswaController extends Controller
                 'tgl_lahir'     => 'required|date',
                 'jenis_kelamin' => 'required|in:L,P',
         ]);
+
         if ($validator->fails()){
             return redirect('siswa/' . $id . '/edit')->withInput()
             ->withErrors($validator);
         }
 
         $siswa->update($request->all());
+
+        //update no telepon
+        if($siswa->telepon){
+            //jika telepon diisi, update!
+            if($request->filled('no_telepon')){
+                $telepon = $siswa->telepon;
+                $telepon->no_telepon = $request->input('no_telepon');
+                $siswa->telepon()->save($telepon);
+            }
+            //jika telepon tidak diisi, hapus!!
+            else{
+                $siswa->telepon()->delete();
+            }
+        }
+        //buat entry baru, jika sebelumnya tdk ada no telepon
+        else{
+            if($request->filled('no_telepon')){
+                $telepon = new Telepon;
+                $telepon->no_telepon = $request->input('no_telepon');
+                $siswa->telepon()->save($telepon);
+            }
+        }
+
         return redirect('siswa');
     }
 
