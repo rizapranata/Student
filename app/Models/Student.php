@@ -10,7 +10,8 @@ class Student extends Model
         'nisn',
         'nama_siswa',
         'tgl_lahir',
-        'jenis_kelamin'
+        'jenis_kelamin',
+        'id_kelas'
     ];
 
     //untuk mengubah case dari database menjadi kapital/Title Case/CamelCase
@@ -28,5 +29,10 @@ class Student extends Model
     public function telepon()
     {
         return $this->hasOne('App\Models\Telepon','id_siswa');
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo('App\Models\Kelas', 'id_kelas');
     }
 }

@@ -16,6 +16,7 @@
                     <tr>
                         <th>NISN</th>
                         <th>Name</th>
+                        <th>Class</th>
                         <th>Birth Date</th>
                         <th>Gender</th>
                         <th>Telephone</th>
@@ -27,6 +28,7 @@
                     <tr>
                         <td>{{ $s->nisn }}</td>
                         <td>{{ $s->nama_siswa }}</td>
+                        <td>{{ $s->kelas->nama_kelas }}</td>
                         <td>{{ $s->tgl_lahir }}</td>
                         <td>{{ $s->jenis_kelamin }}</td>
                         <td>{{ !empty($s->telepon->no_telepon) ? $s->telepon->no_telepon : '-' }}</td>

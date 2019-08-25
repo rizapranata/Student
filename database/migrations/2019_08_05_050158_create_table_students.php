@@ -19,6 +19,7 @@ class CreateTableStudents extends Migration
             $table->string('nama_siswa',30);
             $table->date('tgl_lahir');
             $table->enum('jenis_kelamin',['L','P']);
+            $table->unsignedBigInteger('id_kelas');
             $table->timestamps();
         });
     }

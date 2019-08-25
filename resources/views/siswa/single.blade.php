@@ -14,19 +14,23 @@
                     <td>{{ $siswa->nisn }}</td>
                 </tr>
                 <tr>
-                    <th>Nama</th>
+                    <th>Name</th>
                     <td>{{ $siswa->nama_siswa }}</td>
                 </tr>
                 <tr>
-                    <th>Tgl Lahir</th>
+                    <th>Class</th>
+                    <td>{{ $siswa->kelas->nama_kelas }}</td>
+                </tr>
+                <tr>
+                    <th>Birth Date</th>
                     <td>{{ $siswa->tgl_lahir }}</td>
                 </tr>
                 <tr>
-                    <th>Jenis Kel</th>
+                    <th>Gender</th>
                     <td>{{ $siswa->jenis_kelamin }}</td>
                 </tr>
                 <tr>
-                    <th>Telepon</th>
+                    <th>Telephone</th>
                     <td>{{ !empty($siswa->telepon->no_telepon) ? $siswa->telepon->no_telepon : '-' }}</td>
                 </tr>
             </table>
