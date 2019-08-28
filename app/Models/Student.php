@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Hobi;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
@@ -26,6 +27,11 @@ class Student extends Model
         return strtolower($nama_siswa);
     }
 
+    public function getHobiSiswaAtribute()
+    {
+        return $this->hobi->pluck('id')->toArray();
+    }
+
     public function telepon()
     {
         return $this->hasOne('App\Models\Telepon','id_siswa');
@@ -34,5 +40,10 @@ class Student extends Model
     public function kelas()
     {
         return $this->belongsTo('App\Models\Kelas', 'id_kelas');
+    }
+
+    public function hobi()
+    {
+        return $this->belongsToMany('App\Models\Hobi','hobi_siswa','id_siswa','id_hobi')->withTimestamps();
     }
 }

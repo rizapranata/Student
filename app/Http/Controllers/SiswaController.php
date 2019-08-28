@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
+use App\Models\Hobi;
 use App\Models\Kelas;
 use App\Models\Student;
 use App\Models\Telepon;
@@ -22,7 +23,8 @@ class SiswaController extends Controller
     {
         $halaman = 'siswa';
         $list_kelas = Kelas::pluck('nama_kelas', 'id');
-        return view('siswa.create', compact('list_kelas','halaman'));
+        $list_hobi  = Hobi::pluck('nama_hobi','id');
+        return view('siswa.create', compact('list_kelas','list_hobi','halaman'));
     }
 
     public function store(Request $request)
@@ -55,6 +57,8 @@ class SiswaController extends Controller
        $telepon->no_telepon = $request->input('no_telepon');
        $siswa->telepon()->save($telepon);
 
+       $siswa->hobi()->attach($request->input('hobi_siswa'));
+
        return redirect('siswa');
 
         /*  
@@ -82,10 +86,11 @@ class SiswaController extends Controller
     {
         $siswa = Student::findOrFail($id);
         $list_kelas = Kelas::pluck('nama_kelas', 'id');
+        $list_hobi  = Hobi::pluck('nama_hobi', 'id');
         if(!empty($siswa->telepon->no_telepon)){
             $siswa->no_telepon = $siswa->telepon->no_telepon;
         }
-        return view('siswa.edit', compact('siswa','list_kelas'));
+        return view('siswa.edit', compact('siswa','list_kelas','list_hobi'));
     }
 
     public function update($id, Request $request)
@@ -130,6 +135,8 @@ class SiswaController extends Controller
                 $siswa->telepon()->save($telepon);
             }
         }
+
+        $siswa->hobi()->sync($request->input('hobi_siswa'));
 
         return redirect('siswa');
     }
